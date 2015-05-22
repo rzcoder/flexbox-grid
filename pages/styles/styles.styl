@@ -7,13 +7,68 @@ html, body, h1, h2, h3
   padding 0
   font-family Roboto, sans-serif
 
+body
+  padding-bottom 50px
+
+h1, h2, h3, h4
+  font-weight 300
+  margin-top 35px
 
 .header
   text-align center
   margin 25px 0
   font-size 40px
-  font-weight 300
 
 
-.row.demo > div
-  background: #C09853
+.row.demo
+  &.sm-margin
+    margin-top 5px
+
+  > div
+    background #90caf9
+    text-align center
+    box-sizing border-box
+    border 4px solid #1976d2
+    min-height 40px
+    line-height 40px
+
+  &, & > div
+    &.color-1
+      background $bg = #448aff
+      border 4px solid darken($bg, 25%)
+    &.color-2
+      background $bg = #ffebee
+      border 4px solid darken($bg, 25%)
+    &.color-3
+      background $bg = #bbdefb
+      border 4px solid darken($bg, 25%)
+    &.color-4
+      background $bg = #c8e6c9
+      border 4px solid darken($bg, 25%)
+    &.color-5
+      background $bg = #f8bbd0
+      border 4px solid darken($bg, 25%)
+    &.color-6
+      background $bg = #ce93d8
+      border 4px solid darken($bg, 25%)
+    &.color-7
+      background $bg = #d1c4e9
+      border 4px solid darken($bg, 25%)
+    &.color-8
+      background $bg = #b2dfdb
+      border 4px solid darken($bg, 25%)
+    &.color-9
+      background $bg = #f0f4c3
+      border 4px solid darken($bg, 25%)
+    &.color-10
+      background $bg = #ffecb3
+      border 4px solid darken($bg, 25%)
+    &.color-11
+      background $bg = #e0e0e0
+      border 4px solid darken($bg, 25%)
+    &.color-12
+      background $bg = #a1887f
+      border 4px solid darken($bg, 25%)
+
+  &.v-aligns
+    min-height 150px

@@ -4,21 +4,153 @@
 $nc ?= ''
 
 $cols_num = 12
+$orders_num = 12
+$grow_sizing_num = 12
+
+$breakpoint_mobile = (0px 800px)
+$breakpoint_tablet = ($breakpoint_mobile[1]+1 1300px)
+$breakpoint_desktop = $breakpoint_tablet[1] + 1
 
 
 basic_flex()
-  display: flex
-  justify-content: flex-start
-  align-content: stretch
+  display flex
+  justify-content flex-start
+  align-content stretch
   align-items: stretch
 
 .{$nc}row
   basic_flex()
-  flex-direction: row
+  flex-direction row
+  flex-wrap wrap
+
+  /* Directions */
+  &.{$nc}row-normal
+    flex-direction row
+
+  &.{$nc}row-reverse
+    flex-direction row-reverse
+
+  &.{$nc}row-vertical
+    flex-direction column
+
+  &.{$nc}row-vertical-reverse
+    flex-direction column-reverse
+
+  /* Horizontal align */
+  &.{$nc}row-start
+    justify-content flex-start
+
+  &.{$nc}row-end
+    justify-content flex-end
+
+  &.{$nc}row-center
+    justify-content center
+
+  &.{$nc}row-sb
+    justify-content space-between
+
+  &.{$nc}row-sa
+    justify-content space-around
+
+  /* Vertical aligns */
+  &.{$nc}row-va-top
+    align-content flex-start
+
+  &.{$nc}row-va-bottom
+    align-content flex-end
+
+  &.{$nc}row-va-center
+    align-content center
+
+  &.{$nc}row-va-sb
+    align-content space-between
+
+  &.{$nc}row-va-sa
+    align-content space-around
+
+  &.{$nc}row-va-stretch
+    align-items stretch
+
+  /* Vertical stretch */
+  &.{$nc}row-s-top
+    align-items flex-start
+
+  &.{$nc}row-s-bottom
+    align-items flex-end
+
+  &.{$nc}row-s-center
+    align-items center
+
+  &.{$nc}row-s-stretch
+    align-items stretch
 
 
+/* Self ordering */
 
-for $num in (1..$cols_num)
-  .{$nc}col-{$num}
-    flex-basis (100/$cols_num *$num )%;
-    max-width (100/$cols_num *$num )%;
+.{$nc}col-order-0
+  order $order
+
+for $order in (1..$orders_num)
+  .{$nc}col-order-{$order}
+    order $order
+
+  .{$nc}col-order-n{$order}
+    order -($order)
+
+for $grow in (1..$grow_sizing_num)
+  .{$nc}col-grow-{$grow}
+    flex-grow $grow
+
+
+@media (min-width: $breakpoint_mobile[0]) and (max-width: $breakpoint_mobile[1])
+  .{$nc}row
+    for $num in (1..$cols_num)
+      > .{$nc}col-lg-{$num}
+        flex-basis 100%
+        max-width 100%
+
+    for $num in (1..$cols_num)
+      > .{$nc}col-md-{$num}
+        flex-basis 100%
+        max-width 100%
+
+    for $num in (1..$cols_num)
+      > .{$nc}col-{$num}
+        flex-basis (100/$cols_num * $num)%
+        max-width (100/$cols_num * $num)%
+
+@media (min-width: $breakpoint_tablet[0]) and (max-width: $breakpoint_tablet[1])
+  .{$nc}row
+    for $num in (1..$cols_num)
+      > .{$nc}col-lg-{$num}
+        flex-basis 100%
+        max-width 100%
+
+    for $num in (1..$cols_num)
+      > .{$nc}col-{$num}
+        flex-basis (100/$cols_num * $num)%
+        max-width (100/$cols_num * $num)%
+
+    for $num in (1..$cols_num)
+      > .{$nc}col-md-{$num}
+        flex-basis (100/$cols_num * $num)%
+        max-width (100/$cols_num * $num)%
+
+@media (min-width: $breakpoint_desktop)
+  .{$nc}row
+    for $num in (1..$cols_num)
+      > .{$nc}col-{$num}
+        flex-basis (100/$cols_num * $num)%
+        max-width (100/$cols_num * $num)%
+
+    for $num in (1..$cols_num)
+      > .{$nc}col-md-{$num}
+        flex-basis (100/$cols_num * $num)%
+        max-width (100/$cols_num * $num)%
+
+    for $num in (1..$cols_num)
+      > .{$nc}col-lg-{$num}
+        flex-basis (100/$cols_num * $num)%
+        max-width (100/$cols_num * $num)%
+
+
