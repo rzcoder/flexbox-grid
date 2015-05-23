@@ -1,0 +1,23 @@
+{
+  "name": "flexbox-grid",
+  "version": "0.1.0",
+  "homepage": "https://github.com/rzcoder/flexbox-grid",
+  "authors": [
+    "rzcoder <rzcoder@gmail.com>"
+  ],
+  "description": "Css grid layout based on flexbox",
+  "main": "dist/flexbox-grid.min.css",
+  "keywords": [
+    "flexbox",
+    "grid",
+    "css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

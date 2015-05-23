@@ -1,156 +1,249 @@
 @require "nib"
 
 // namespace for classes
-$nc ?= ''
+$ns ?= ''
 
-$cols_num = 12
-$orders_num = 12
-$grow_sizing_num = 12
+$cols_num ?= 12
+$orders_num ?= 6
+$grow_sizing_num ?= 12
 
-$breakpoint_mobile = (0px 800px)
-$breakpoint_tablet = ($breakpoint_mobile[1]+1 1300px)
-$breakpoint_desktop = $breakpoint_tablet[1] + 1
+$breakpoint_mobile ?= (0px 800px)
+$breakpoint_tablet ?= ($breakpoint_mobile[1]+1 1300px)
+$breakpoint_desktop ?= $breakpoint_tablet[1] + 1
+
+$row_margin ?= 0
+$row_padding ?= 0
+$col_margin ?= 0
+$col_padding ?= 0
 
 
-basic_flex()
-  display flex
-  justify-content flex-start
-  align-content stretch
-  align-items: stretch
-
-.{$nc}row
-  basic_flex()
-  flex-direction row
-  flex-wrap wrap
-
+row_modifiers($media_ns)
   /* Directions */
-  &.{$nc}row-normal
+  &.{$ns}row-{$media_ns}normal
     flex-direction row
 
-  &.{$nc}row-reverse
+  &.{$ns}row-{$media_ns}reverse
     flex-direction row-reverse
 
-  &.{$nc}row-vertical
+  &.{$ns}row-{$media_ns}vertical
     flex-direction column
 
-  &.{$nc}row-vertical-reverse
+  &.{$ns}row-{$media_ns}vertical-reverse
     flex-direction column-reverse
 
   /* Horizontal align */
-  &.{$nc}row-start
+  &.{$ns}row-{$media_ns}start
     justify-content flex-start
 
-  &.{$nc}row-end
+  &.{$ns}row-{$media_ns}end
     justify-content flex-end
 
-  &.{$nc}row-center
+  &.{$ns}row-{$media_ns}center
     justify-content center
 
-  &.{$nc}row-sb
+  &.{$ns}row-{$media_ns}sb
     justify-content space-between
 
-  &.{$nc}row-sa
+  &.{$ns}row-{$media_ns}sa
     justify-content space-around
 
   /* Vertical aligns */
-  &.{$nc}row-va-top
+  &.{$ns}row-{$media_ns}va-top
     align-content flex-start
 
-  &.{$nc}row-va-bottom
+  &.{$ns}row-{$media_ns}va-bottom
     align-content flex-end
 
-  &.{$nc}row-va-center
+  &.{$ns}row-{$media_ns}va-center
     align-content center
 
-  &.{$nc}row-va-sb
+  &.{$ns}row-{$media_ns}va-sb
     align-content space-between
 
-  &.{$nc}row-va-sa
+  &.{$ns}row-{$media_ns}va-sa
     align-content space-around
 
-  &.{$nc}row-va-stretch
+  &.{$ns}row-{$media_ns}va-stretch
     align-items stretch
 
   /* Vertical stretch */
-  &.{$nc}row-s-top
+  &.{$ns}row-{$media_ns}s-top
     align-items flex-start
 
-  &.{$nc}row-s-bottom
+  &.{$ns}row-{$media_ns}s-bottom
     align-items flex-end
 
-  &.{$nc}row-s-center
+  &.{$ns}row-{$media_ns}s-center
     align-items center
 
-  &.{$nc}row-s-stretch
+  &.{$ns}row-{$media_ns}s-stretch
     align-items stretch
 
+col_modifiers($media_ns)
+  /* Offset */
+  for $num in (1..$cols_num)
+    .{$ns}col-{$media_ns}offset-{$num}
+      margin-left (100/$cols_num * $num)%
 
-/* Self ordering */
+    .{$ns}col-{$media_ns}offset-n{$num}
+      margin-left -(100/$cols_num * $num)%
 
-.{$nc}col-order-0
-  order $order
+  /* Self ordering */
+  .{$ns}col-{$media_ns}order-0
+    order 0
 
-for $order in (1..$orders_num)
-  .{$nc}col-order-{$order}
-    order $order
+  for $order in (1..$orders_num)
+    .{$ns}col-{$media_ns}order-{$order}
+      order $order
 
-  .{$nc}col-order-n{$order}
-    order -($order)
+    .{$ns}col-{$media_ns}order-n{$order}
+      order -($order)
 
-for $grow in (1..$grow_sizing_num)
-  .{$nc}col-grow-{$grow}
-    flex-grow $grow
+  /* Self align */
 
+  .{$ns}col-{$media_ns}top
+    align-self flex-start
+
+  .{$ns}col-{$media_ns}bottom
+    align-self flex-end
+
+  .{$ns}col-{$media_ns}center
+    align-self center
+
+  .{$ns}col-{$media_ns}stretch
+    align-self stretch
+
+col_grow($media_ns)
+  .{$ns}col-{$media_ns}grow
+  .{$ns}col-{$media_ns}
+    flex-basis auto
+    max-width none
+    flex-grow 1
+    @extend ._{$ns}col
+
+  for $grow in (1..$grow_sizing_num)
+    .{$ns}col-{$media_ns}grow-{$grow}
+      @extend ._{$ns}col
+      flex-basis auto
+      max-width none
+      flex-grow $grow
+
+helpers($media_ns)
+  .{$ns}{$media_ns}hidden
+    display none
+    visibility hidden
+
+
+.{$ns}row
+  display flex
+  justify-content flex-start
+  align-content stretch
+  align-items stretch
+  flex-direction row
+  flex-wrap wrap
+  margin $row_margin
+  padding $row_padding
+  box-sizing border-box
+  row_modifiers('')
+
+._{$ns}col
+  box-sizing border-box
+  margin $col_margin
+  padding $col_padding
+
+for $num in (1..$cols_num)
+  .{$ns}col-lg-{$num}
+  .{$ns}col-md-{$num}
+  .{$ns}col-{$num}
+    @extend ._{$ns}col
+
+.{$ns}col
+  flex-basis auto
+  flex-grow 1
+
+col_modifiers('')
 
 @media (min-width: $breakpoint_mobile[0]) and (max-width: $breakpoint_mobile[1])
-  .{$nc}row
+  .{$ns}row
     for $num in (1..$cols_num)
-      > .{$nc}col-lg-{$num}
+      > .{$ns}col-lg-{$num}
+        flex-grow 0
         flex-basis 100%
         max-width 100%
 
     for $num in (1..$cols_num)
-      > .{$nc}col-md-{$num}
+      > .{$ns}col-md-{$num}
+        flex-grow 0
         flex-basis 100%
         max-width 100%
 
     for $num in (1..$cols_num)
-      > .{$nc}col-{$num}
+      > .{$ns}col-{$num}
+        flex-grow 0
         flex-basis (100/$cols_num * $num)%
         max-width (100/$cols_num * $num)%
+
+    col_grow('')
+  helpers('sm-')
 
 @media (min-width: $breakpoint_tablet[0]) and (max-width: $breakpoint_tablet[1])
-  .{$nc}row
+  .{$ns}row
     for $num in (1..$cols_num)
-      > .{$nc}col-lg-{$num}
+      > .{$ns}col-lg-{$num}
+        flex-grow 0
         flex-basis 100%
         max-width 100%
 
     for $num in (1..$cols_num)
-      > .{$nc}col-{$num}
+      > .{$ns}col-{$num}
+        flex-grow 0
         flex-basis (100/$cols_num * $num)%
         max-width (100/$cols_num * $num)%
 
+    col_grow('')
+
     for $num in (1..$cols_num)
-      > .{$nc}col-md-{$num}
+      > .{$ns}col-md-{$num}
+        flex-grow 0
         flex-basis (100/$cols_num * $num)%
         max-width (100/$cols_num * $num)%
+
+    col_grow('md-')
+  helpers('md-')
 
 @media (min-width: $breakpoint_desktop)
-  .{$nc}row
+  .{$ns}row
     for $num in (1..$cols_num)
-      > .{$nc}col-{$num}
+      > .{$ns}col-{$num}
+        flex-grow 0
         flex-basis (100/$cols_num * $num)%
         max-width (100/$cols_num * $num)%
 
+    col_grow('')
+
     for $num in (1..$cols_num)
-      > .{$nc}col-md-{$num}
+      > .{$ns}col-md-{$num}
+        flex-grow 0
         flex-basis (100/$cols_num * $num)%
         max-width (100/$cols_num * $num)%
 
+    col_grow('md-')
+
     for $num in (1..$cols_num)
-      > .{$nc}col-lg-{$num}
+      > .{$ns}col-lg-{$num}
+        flex-grow 0
         flex-basis (100/$cols_num * $num)%
         max-width (100/$cols_num * $num)%
 
+    col_grow('lg-')
+  helpers('lg-')
 
+@media (min-width: $breakpoint_tablet[0])
+  .{$ns}row
+    row_modifiers('md-')
+  col_modifiers('md-')
+
+@media (min-width: $breakpoint_desktop)
+  .{$ns}row
+    row_modifiers('lg-')
+  col_modifiers('lg-')

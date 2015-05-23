@@ -29,7 +29,7 @@ module.exports = function (grunt) {
         cssmin: {
             dist: {
                 files: [
-                    {expand: true, cwd: 'dist/', src: '*.css', dest: 'dist', ext: '.min.css'}
+                    {expand: true, cwd: 'dist/', src: 'flexbox-grid.css', dest: 'dist', ext: '.min.css'}
                 ]
             }
         },
