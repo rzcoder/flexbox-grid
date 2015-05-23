@@ -2,9 +2,9 @@
 
 ## Install
 ```
-    npm install
+    npm install flex-grid
 ```
 
 ```
-    bower install
+    bower install flexbox-grid
 ```
