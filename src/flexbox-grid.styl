@@ -18,6 +18,16 @@ $col_padding ?= 0
 
 
 row_modifiers($media_ns)
+  /* Wraps */
+  &.{$ns}row-{$media_ns}wrap
+    flex-wrap wrap
+
+  &.{$ns}row-{$media_ns}nowrap
+    flex-wrap nowrap
+
+  &.{$ns}row-{$media_ns}wrap-reverse
+    flex-wrap wrap-reverse
+
   /* Directions */
   &.{$ns}row-{$media_ns}normal
     flex-direction row
@@ -133,7 +143,6 @@ helpers($media_ns)
     display none
     visibility hidden
 
-
 .{$ns}row
   display flex
   justify-content flex-start
@@ -160,6 +169,9 @@ for $num in (1..$cols_num)
 .{$ns}col
   flex-basis auto
   flex-grow 1
+
+.{$ns}col-fixed
+  flex-shrink 0
 
 col_modifiers('')
 

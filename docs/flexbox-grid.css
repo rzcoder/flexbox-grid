@@ -37,10 +37,35 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+/* Wraps */
 /* Directions */
 /* Horizontal align */
 /* Vertical aligns */
 /* Vertical stretch */
+}
+.row.row-wrap {
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.row.row-nowrap {
+  -webkit-box-lines: single;
+  -moz-box-lines: single;
+  -o-box-lines: single;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+.row.row-wrap-reverse {
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap-reverse;
+  -ms-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
 }
 .row.row-normal {
   -webkit-box-orient: horizontal;
@@ -280,6 +305,10 @@
   box-flex: 1;
   -webkit-flex-grow: 1;
   flex-grow: 1;
+}
+.col-fixed {
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
 }
 /* Offset */
 .col-offset-1 {
@@ -2737,6 +2766,30 @@
   }
 }
 @media (min-width: 801px) {
+  .row.row-md-wrap {
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -o-box-lines: multiple;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  .row.row-md-nowrap {
+    -webkit-box-lines: single;
+    -moz-box-lines: single;
+    -o-box-lines: single;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  .row.row-md-wrap-reverse {
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -o-box-lines: multiple;
+    -webkit-flex-wrap: wrap-reverse;
+    -ms-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+  }
   .row.row-md-normal {
     -webkit-box-orient: horizontal;
     -moz-box-orient: horizontal;
@@ -3078,6 +3131,30 @@
   }
 }
 @media (min-width: 1301px) {
+  .row.row-lg-wrap {
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -o-box-lines: multiple;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  .row.row-lg-nowrap {
+    -webkit-box-lines: single;
+    -moz-box-lines: single;
+    -o-box-lines: single;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  .row.row-lg-wrap-reverse {
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -o-box-lines: multiple;
+    -webkit-flex-wrap: wrap-reverse;
+    -ms-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+  }
   .row.row-lg-normal {
     -webkit-box-orient: horizontal;
     -moz-box-orient: horizontal;

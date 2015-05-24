@@ -1,7 +1,7 @@
 # Flexbox Grid System
 
 ## Docs and demos
-[https://github.com/rzcoder/flexbox-grid](https://github.com/rzcoder/flexbox-grid)
+[http://rzcoder.github.io/flexbox-grid/](http://rzcoder.github.io/flexbox-grid/)
 
 ## Install
 ```

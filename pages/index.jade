@@ -67,7 +67,7 @@ html
           .col .col
           .col .col
           .col .col
-        .row(class="demo")
+        .row.row-nowrap(class="demo")
           .col-fixed(style="flex-basis: 200px", class="color-5") .col-fixed with flex-basis 200px
           .col-grow(class="color-4") .col-grow-1 or .col-grow or just .col
         .row(class="demo")
@@ -82,7 +82,6 @@ html
         .row(class="demo color-0")
           .col-3.col-offset-4(class="color-1") .col-3.col-offset-4
           .col-3.col-offset-n7(class="color-2") .col-3.col-offset-n7 (negative 7)
-
 
         h2 Horizontal align
         h3 .row.row-start (default)
@@ -199,6 +198,24 @@ html
               .col-12(class="color-4") I'm 2nd
               .col-12(class="color-1") I'm 3th
 
+        h2 Rows wrap
+        h3 .row.row-wrap (default)
+        .row.row-wrap(class="demo color-0")
+          .col-6(class="color-0") I'm 1st (.col-6)
+          .col-6(class="color-2") I'm 2nd (.col-6)
+          .col-6(class="color-1") I'm 3th (.col-6)
+        h3 .row.row-nowrap
+        .row.row-nowrap(class="demo color-0")
+          .col-6(class="color-0") I'm 1st (.col-6)
+          .col-6(class="color-2") I'm 2nd (.col-6)
+          .col-6(class="color-1") I'm 3th (.col-6)
+        h3 .row.row-wrap-reverse
+        .row.row-wrap-reverse(class="demo color-0")
+          .col-6(class="color-0") I'm 1st (.col-6)
+          .col-6(class="color-2") I'm 2nd (.col-6)
+          .col-6(class="color-1") I'm 3th (.col-6)
+
+
         h2 Self ordering
         p By default supports order from -6 to 6
         .row(class="demo")
@@ -276,6 +293,12 @@ html
         .row.row-center.demo.row-md-vertical-reverse.row-lg-vertical
           .col-12(class="color-4") We vertical on big & small screens
           .col-12(class="color-6") and reverse vertical on middle one
+
+        h3 .row.row-wrap.row-md-nowrap
+        .row.row.row-wrap.row-md-nowrap(class="demo color-0")
+          .col-6(class="color-0") I'm 1st (.col-6)
+          .col-6(class="color-2") I'm 2nd (.col-6)
+          .col-6(class="color-1") I'm 3th (.col-6)
 
         h3 Responsive self ordering
         .row.row-center(class="demo color-0")
