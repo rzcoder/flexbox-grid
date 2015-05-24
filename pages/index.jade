@@ -11,7 +11,7 @@ head
       var topEl = null;
       var topOffset = 0;
 
-      $window.on('scroll', function () {
+      function saveOffset() {
         $('h1, h2, h3, h4').each(function (index, el) {
           var $el = $(el);
           topOffset = $el.position().top - $window.scrollTop();
@@ -20,6 +20,10 @@ head
             return false;
           }
         });
+      }
+
+      $window.on('scroll', function () {
+        saveOffset();
       });
 
       $window.on('resize', function () {
@@ -29,7 +33,10 @@ head
         }
 
         $window.scrollTop(offset);
+        saveOffset();
       });
+
+      saveOffset();
     }
 
     $(init);
