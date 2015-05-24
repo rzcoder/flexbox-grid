@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<head>
+  <title>Flexbox Based Grids</title>
+  <link href="http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400&amp;subset=cyrillic,latin" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="flexbox-grid.css" media="all">
+  <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script>
+    function init() {
+      var $window = $(window);
+      var topEl = null;
+      var topOffset = 0;
+    
+      $window.on('scroll', function () {
+        $('h1, h2, h3, h4').each(function (index, el) {
+          var $el = $(el);
+          topOffset = $el.position().top - $window.scrollTop();
+          if (topOffset >= 0) {
+            topEl = $el;
+            return false;
+          }
+        });
+      });
+    
+      $window.on('resize', function () {
+        var offset = topOffset;
+        if (topEl) {
+          offset = topEl.position().top - topOffset;
+        }
+    
+        $window.scrollTop(offset);
+      });
+    }
+    
+    $(init);
+  </script>
+</head>
+<html>
+  <body>
+    <div class="row row-center">
+      <div class="col-md-9 col-11">
+        <h1 class="header">Flexbox Grid System</h1>
+        <h2>Percentage cols</h2>
+        <p>By default you have 12 different sizing columns</p>
+        <div class="row demo sm-margin">
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+          <div class="col-1">.col-1</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div class="col-6">.col-6</div>
+          <div class="col-6">.col-6</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div class="col-12">.col-12</div>
+        </div>
+        <h2>Fixed and grow cols</h2>
+        <p>By default you have 12 sizes for .col-grow (1 to 12)</p>
+        <div class="row demo sm-margin">
+          <div class="col">.col</div>
+          <div class="col">.col</div>
+          <div class="col">.col</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div style="flex-basis: 200px" class="col-fixed color-3">.col-fixed with flex-basis 200px</div>
+          <div class="col-grow color-4">.col-grow-1 or .col-grow or just .col</div>
+          <div class="col-1 color-6">.col-1</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div class="col-12 col-md-3 color-9">.col-12.col-md-3</div>
+          <div class="col-grow-3 color-6">.col-grow-3</div>
+          <div class="col-grow-6 color-8">.col-grow-6</div>
+        </div>
+        <h2>Offsets</h2>
+        <div class="row demo sm-margin color-11">
+          <div class="col-3 col-offset-3">.col-3.col-offset-3</div>
+          <div class="col-3 col-offset-1">.col-3.col-offset-1</div>
+        </div>
+        <div class="row demo sm-margin color-11">
+          <div class="col-3 col-offset-4">.col-3.col-offset-4</div>
+          <div class="col-3 col-offset-n7">.col-3.col-offset-n7 (negative 7)</div>
+        </div>
+        <h2>Horizontal align</h2>
+        <h3>.row.row-start (default)</h3>
+        <div class="row demo row-start sm-margin color-11">
+          <div class="col-4">.col-4</div>
+          <div class="col-2">.col-2</div>
+        </div>
+        <h3>.row.row-end</h3>
+        <div class="row demo row-end sm-margin color-11">
+          <div class="col-4">.col-4</div>
+          <div class="col-2">.col-2</div>
+        </div>
+        <h3>.row.row-center</h3>
+        <div class="row demo row-center sm-margin color-11">
+          <div class="col-4">.col-4</div>
+          <div class="col-2">.col-2</div>
+        </div>
+        <h3>.row.row-sb</h3>
+        <div class="row demo row-sb sm-margin color-11">
+          <div class="col-4">.col-4</div>
+          <div class="col-2">.col-2</div>
+        </div>
+        <h3>.row.row-sa</h3>
+        <div class="row demo row-sa sm-margin color-11">
+          <div class="col-4">.col-4</div>
+          <div class="col-2">.col-2</div>
+        </div>
+        <h2>Vertical align</h2>
+        <div class="row">
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-va-stretch (default)</h3>
+            <div class="row row-center demo row-va-stretch sm-margin color-11 v-aligns">
+              <div class="col-8">.col-8</div>
+              <div class="col-8">.col-8</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-va-top</h3>
+            <div class="row row-center demo row-va-top sm-margin color-11 v-aligns">
+              <div class="col-8">.col-8</div>
+              <div class="col-8">.col-8</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-va-bottom</h3>
+            <div class="row row-center demo row-va-bottom sm-margin color-11 v-aligns">
+              <div class="col-8">.col-8</div>
+              <div class="col-8">.col-8</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-va-center</h3>
+            <div class="row row-center demo row-va-center sm-margin color-11 v-aligns">
+              <div class="col-8">.col-8</div>
+              <div class="col-8">.col-8</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-va-sb</h3>
+            <div class="row row-center demo row-va-sb sm-margin color-11 v-aligns">
+              <div class="col-8">.col-8</div>
+              <div class="col-8">.col-8</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-va-sa</h3>
+            <div class="row row-center demo row-va-sa sm-margin color-11 v-aligns">
+              <div class="col-8">.col-8</div>
+              <div class="col-8">.col-8</div>
+            </div>
+          </div>
+        </div>
+        <h2>Vertical stretch</h2>
+        <div class="row">
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-s-stretch (default)</h3>
+            <div class="row row-center demo row-s-stretch sm-margin color-11 v-aligns">
+              <div style="min-height: 40px" class="col-2 color-1">height 40px</div>
+              <div style="min-height: 140px" class="col-2 color-8">height 140px</div>
+              <div style="min-height: 85px" class="col-2 color-6">height 85px</div>
+              <div style="min-height: 70px" class="col-2 color-7">height 70px</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-s-top</h3>
+            <div class="row row-center demo row-s-top sm-margin color-11 v-aligns">
+              <div style="min-height: 40px" class="col-2 color-1">height 40px</div>
+              <div style="min-height: 140px" class="col-2 color-8">height 140px</div>
+              <div style="min-height: 85px" class="col-2 color-6">height 85px</div>
+              <div style="min-height: 70px" class="col-2 color-7">height 70px</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-s-bottom</h3>
+            <div class="row row-center demo row-s-bottom sm-margin color-11 v-aligns">
+              <div style="min-height: 40px" class="col-2 color-1">height 40px</div>
+              <div style="min-height: 140px" class="col-2 color-8">height 140px</div>
+              <div style="min-height: 85px" class="col-2 color-6">height 85px</div>
+              <div style="min-height: 70px" class="col-2 color-7">height 70px</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-s-center</h3>
+            <div class="row row-center demo row-s-center sm-margin color-11 v-aligns">
+              <div style="min-height: 40px" class="col-2 color-1">height 40px</div>
+              <div style="min-height: 140px" class="col-2 color-8">height 140px</div>
+              <div style="min-height: 85px" class="col-2 color-6">height 85px</div>
+              <div style="min-height: 70px" class="col-2 color-7">height 70px</div>
+            </div>
+          </div>
+        </div>
+        <h2>Elements direction</h2>
+        <div class="row">
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-normal (default)</h3>
+            <div class="row demo color-11 row-normal sm-margin">
+              <div class="col-3 color-3">I'm 1st</div>
+              <div class="col-3 color-4">I'm 2nd</div>
+              <div class="col-3 color-5">I'm 3th</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-reverse</h3>
+            <div class="row demo color-11 row-reverse sm-margin">
+              <div class="col-3 color-3">I'm 1st</div>
+              <div class="col-3 color-4">I'm 2nd</div>
+              <div class="col-3 color-5">I'm 3th</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-vertical</h3>
+            <div class="row demo row-vertical sm-margin">
+              <div class="col-12 color-3">I'm 1st</div>
+              <div class="col-12 color-4">I'm 2nd</div>
+              <div class="col-12 color-5">I'm 3th</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 sm-padding">
+            <h3>.row.row-vertical-reverse</h3>
+            <div class="row demo row-vertical-reverse sm-margin">
+              <div class="col-12 color-3">I'm 1st</div>
+              <div class="col-12 color-4">I'm 2nd</div>
+              <div class="col-12 color-5">I'm 3th</div>
+            </div>
+          </div>
+        </div>
+        <h2>Self ordering</h2>
+        <p>By default supports order from -6 to 6</p>
+        <div class="row demo sm-margin">
+          <div class="col-3 color-3 col-order-1">I'm 1st but .col-order-1</div>
+          <div class="col-3 color-4 col-order-2">I'm 2nd but .col-order-2</div>
+          <div class="col-3 color-5 col-order-0">I'm 3th but .col-order-0</div>
+          <div class="col-3 color-6 col-order-n1">I'm 4th but .col-order-n1 (negative 1)</div>
+        </div>
+        <h2>Self align</h2>
+        <div class="row row-center demo sm-margin color-11 v-aligns">
+          <div style="min-height: 40px" class="col-2 col-bottom color-1">.col-bottom<br>height 40px</div>
+          <div style="min-height: 140px" class="col-2 color-8">height 140px</div>
+          <div style="min-height: 85px" class="col-2 col-center color-6">.col-center<br>height 85px</div>
+          <div style="min-height: 70px" class="col-2 col-top color-7">.col-top<br>height 70px</div>
+          <div style="min-height: 50px" class="col-2 col-stretch color-3">.col-stretch<br>height 50px</div>
+        </div>
+        <h2>Basic responsive</h2>
+        <div class="row demo sm-margin">
+          <div class="col-lg-6">.col-lg-6</div>
+          <div class="col-lg-6">.col-lg-6</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div class="col-md-4 color-9">.col-md-4</div>
+          <div class="col-md-8 color-9">.col-md-8</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div class="col-8 col-md-3 color-4">.col-7.col-md-3</div>
+          <div class="col-4 col-md-9 color-4">.col-5.col-md-9</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div class="col-4 col-md-8 col-lg-6 color-2">.col-4.col-md-8.col-lg-6</div>
+          <div class="col-8 col-md-4 col-lg-6 color-2">.col-8.col-md-4.col-lg-6</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div class="col-grow-1 col-lg-2 color-8">.col-grow-1.col-lg-2</div>
+          <div class="col-grow-1 col-lg-7 color-9">.col-grow-1.col-lg-7</div>
+          <div class="col-grow-1 col-lg-3 color-5">.col-grow-1.col-lg-3</div>
+        </div>
+        <div class="row demo sm-margin">
+          <div class="col-9 col-md-grow-1 color-7">.col-9.col-md-grow-1</div>
+          <div class="col-3 col-md-grow-6 color-10">.col-3.col-md-grow-6</div>
+        </div>
+        <h2>Offsets</h2>
+        <div class="row demo sm-margin color-11">
+          <div class="col-3 col-md-offset-1">.col-3.col-md-offset-1</div>
+          <div class="col-3 col-lg-offset-5">.col-3.col-lg-offset-5</div>
+        </div>
+        <h2>Responsive rows modifiers</h2>
+        <p>You can use all modifier classes of rows and cols with responsive modifiers by add 'md' or 'lg' prefixes</p>
+        <h3>.row.row-md-center.row-lg-end</h3>
+        <div class="row demo row-md-center row-lg-end sm-margin color-8">
+          <div class="col-8">I'm on the right only on big screens, centered on middle size screens and on the left on small one</div>
+        </div>
+        <h3>.row.row-va-bottom.row-md-va-center.row-lg-va-top</h3>
+        <div class="row row-va-bottom row-md-va-center row-lg-va-top demo sm-margin row-center color-9 v-aligns">
+          <div class="col-8">We on the top on big screens, centered on</div>
+          <div class="col-8">middle and on the bottom on small</div>
+        </div>
+        <h3>.row.row-s-center.row-md-s-top.row-lg-s-stretch</h3>
+        <div class="row row-center demo row-s-center row-md-s-top row-lg-s-stretch sm-margin color-11 v-aligns">
+          <div style="min-height: 40px" class="col-3 color-1">We stretch on big screens,</div>
+          <div style="min-height: 140px" class="col-3 color-8">stick on top on middle screens</div>
+          <div style="min-height: 85px" class="col-3 color-6"> and centered</div>
+          <div style="min-height: 70px" class="col-3 color-7">on small</div>
+        </div>
+        <h3>.row.row-md-vertical-reverse.row-lg-reverse</h3>
+        <div class="row row-center demo row-md-vertical-reverse row-lg-vertical color-11 sm-margin">
+          <div class="col-12 color-3">We vertical on big & small screens</div>
+          <div class="col-12 color-5">and reverse vertical on middle one</div>
+        </div>
+        <h3>Responsive self ordering</h3>
+        <div class="row row-center demo color-11 sm-margin">
+          <div class="col-3 color-3 col-order-2 col-md-order-3 col-lg-order-1">.col-order-2.<br>.col-md-order-3<br>.col-lg-order-1</div>
+          <div class="col-3 color-7 col-order-3 col-md-order-1 col-lg-order-2">.col-order-3<br>.col-md-order-1<br>.col-lg-order-2</div>
+          <div class="col-3 color-4 col-order-1 col-md-order-2 col-lg-order-3">.col-order-1<br>.col-md-order-2<br>.col-lg-order-3</div>
+        </div>
+        <h3>Responsive self align</h3>
+        <div class="row row-center demo v-aligns color-11 sm-margin">
+          <div class="col-3 color-3 col-bottom col-md-center col-lg-top">.col-bottom<br>.col-md-center<br>.col-lg-top</div>
+          <div class="col-3 col-md-bottom color-7">.col-md-bottom</div>
+          <div class="col-3 color-4 col-top col-md-stretch col-lg-bottom">.col-top<br>.col-md-stretch<br>.col-lg-bottom</div>
+        </div>
+        <h3>Responsive helpers</h3>
+        <div class="row demo sm-margin">
+          <div class="col-12 sm-hidden md-hidden color-6">I'm visible only on large screens<br>.sm-hidden.md-hidden</div>
+          <div class="col-12 sm-hidden lg-hidden color-9">I'm visible only on middle screens<br>.sm-hidden.lg-hidden</div>
+          <div class="col-12 md-hidden lg-hidden color-4">I'm visible only on small screens<br>.md-hidden.lg-hidden</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

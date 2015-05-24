@@ -1,0 +1,104 @@
+/**
+ * This file contains support styles for demo pages
+ */
+html,
+body,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+}
+body {
+  padding-bottom: 50px;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
+  margin-top: 35px;
+}
+.header {
+  text-align: center;
+  margin: 25px 0;
+  font-size: 40px;
+}
+.row.demo.sm-margin {
+  margin-top: 5px;
+}
+.row.demo > div {
+  background: #90caf9;
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px solid #1976d2;
+  min-height: 40px;
+  line-height: 40px;
+}
+.row.demo.color-1,
+.row.demo > div.color-1 {
+  background: #448aff;
+  border: 2px solid #005bf2;
+}
+.row.demo.color-2,
+.row.demo > div.color-2 {
+  background: #ffebee;
+  border: 2px solid #ff7186;
+}
+.row.demo.color-3,
+.row.demo > div.color-3 {
+  background: #bbdefb;
+  border: 2px solid #54acf5;
+}
+.row.demo.color-4,
+.row.demo > div.color-4 {
+  background: #c8e6c9;
+  border: 2px solid #7ec480;
+}
+.row.demo.color-5,
+.row.demo > div.color-5 {
+  background: #f8bbd0;
+  border: 2px solid #ee588c;
+}
+.row.demo.color-6,
+.row.demo > div.color-6 {
+  background: #ce93d8;
+  border: 2px solid #b050c0;
+}
+.row.demo.color-7,
+.row.demo > div.color-7 {
+  background: #d1c4e9;
+  border: 2px solid #9476cc;
+}
+.row.demo.color-8,
+.row.demo > div.color-8 {
+  background: #b2dfdb;
+  border: 2px solid #6bc2ba;
+}
+.row.demo.color-9,
+.row.demo > div.color-9 {
+  background: #f0f4c3;
+  border: 2px solid #d9e366;
+}
+.row.demo.color-10,
+.row.demo > div.color-10 {
+  background: #ffecb3;
+  border: 2px solid #ffd146;
+}
+.row.demo.color-11,
+.row.demo > div.color-11 {
+  background: #e0e0e0;
+  border: 2px solid #a8a8a8;
+}
+.row.demo.color-12,
+.row.demo > div.color-12 {
+  background: #a1887f;
+  border: 2px solid #7d645b;
+}
+.row.demo.v-aligns {
+  height: 165px;
+}
+.sm-padding {
+  padding: 5px;
+}
