@@ -20,9 +20,16 @@ h1, h2, h3, h4
   font-size 40px
 
 
+$row-colors = #eceff1
+$col-colors = #ffab91 #bbdefb #f0f4c3 #b39ddb #b2ebf2 #ffe0b2 #ffcdd2
+
 .row.demo
-  &.sm-margin
-    margin-top 5px
+  margin-top 5px
+
+  for $color, $index in $row-colors
+    &.color-{$index}
+      background $color
+      border 2px solid darken($color, 25%)
 
   > div
     background #90caf9
@@ -32,43 +39,11 @@ h1, h2, h3, h4
     min-height 40px
     line-height 40px
 
-  &, & > div
-    &.color-1
-      background $bg = #448aff
-      border 2px solid darken($bg, 25%)
-    &.color-2
-      background $bg = #ffebee
-      border 2px solid darken($bg, 25%)
-    &.color-3
-      background $bg = #bbdefb
-      border 2px solid darken($bg, 25%)
-    &.color-4
-      background $bg = #c8e6c9
-      border 2px solid darken($bg, 25%)
-    &.color-5
-      background $bg = #f8bbd0
-      border 2px solid darken($bg, 25%)
-    &.color-6
-      background $bg = #ce93d8
-      border 2px solid darken($bg, 25%)
-    &.color-7
-      background $bg = #d1c4e9
-      border 2px solid darken($bg, 25%)
-    &.color-8
-      background $bg = #b2dfdb
-      border 2px solid darken($bg, 25%)
-    &.color-9
-      background $bg = #f0f4c3
-      border 2px solid darken($bg, 25%)
-    &.color-10
-      background $bg = #ffecb3
-      border 2px solid darken($bg, 25%)
-    &.color-11
-      background $bg = #e0e0e0
-      border 2px solid darken($bg, 25%)
-    &.color-12
-      background $bg = #a1887f
-      border 2px solid darken($bg, 25%)
+    for $color, $index in $col-colors
+      &.color-{$index}
+        background $color
+        border 2px solid darken($color, 25%)
+
 
   &.v-aligns
     height 165px

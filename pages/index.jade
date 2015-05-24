@@ -42,254 +42,256 @@ head
     $(init);
 html
   body
+    a(href="https://github.com/rzcoder/flexbox-grid")
+      img(style="position: absolute; top: 0; right: 0; border: 0;", src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67", alt="Fork me on GitHub", data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png")
+
     .row.row-center
       .col-md-9.col-11
         h1.header Flexbox Grid System
 
         h2 Percentage cols
         p By default you have 12 different sizing columns
-        .row.demo.sm-margin
+        .row(class="demo")
           - var n = 0
           while n++ < 12
             .col-1 .col-1
-        .row.demo.sm-margin
-          .col-6 .col-6
-          .col-6 .col-6
-        .row.demo.sm-margin
-          .col-12 .col-12
+        .row(class="demo")
+          .col-6(class="color-4") .col-6
+          .col-6(class="color-4") .col-6
+        .row(class="demo")
+          .col-12(class="color-5") .col-12
 
         h2 Fixed and grow cols
         p By default you have 12 sizes for .col-grow (1 to 12)
-        .row.demo.sm-margin
+        .row(class="demo")
           .col .col
           .col .col
           .col .col
-        .row.demo.sm-margin
-          .col-fixed.color-3(style="flex-basis: 200px") .col-fixed with flex-basis 200px
-          .col-grow.color-4 .col-grow-1 or .col-grow or just .col
-          .col-1.color-6 .col-1
-        .row.demo.sm-margin
-          .col-12.col-md-3.color-9 .col-12.col-md-3
-          .col-grow-3.color-6 .col-grow-3
-          .col-grow-6.color-8 .col-grow-6
+        .row(class="demo")
+          .col-fixed(style="flex-basis: 200px", class="color-5") .col-fixed with flex-basis 200px
+          .col-grow(class="color-4") .col-grow-1 or .col-grow or just .col
+        .row(class="demo")
+          .col-12.col-md-3(class="color-2") .col-12.col-md-3
+          .col-grow-3(class="color-3") .col-grow-3
+          .col-grow-6(class="color-5") .col-grow-6
 
         h2 Offsets
-        .row.demo.sm-margin.color-11
-          .col-3.col-offset-3 .col-3.col-offset-3
-          .col-3.col-offset-1 .col-3.col-offset-1
-        .row.demo.sm-margin.color-11
-          .col-3.col-offset-4 .col-3.col-offset-4
-          .col-3.col-offset-n7 .col-3.col-offset-n7 (negative 7)
+        .row(class="demo color-0")
+          .col-3.col-offset-3(class="color-1") .col-3.col-offset-3
+          .col-3.col-offset-1(class="color-2") .col-3.col-offset-1
+        .row(class="demo color-0")
+          .col-3.col-offset-4(class="color-1") .col-3.col-offset-4
+          .col-3.col-offset-n7(class="color-2") .col-3.col-offset-n7 (negative 7)
 
 
         h2 Horizontal align
         h3 .row.row-start (default)
-        .row.demo.row-start.sm-margin.color-11
-          .col-4 .col-4
-          .col-2 .col-2
+        .row.row-start(class="demo color-0")
+          .col-4(class="color-5") .col-4
+          .col-2(class="color-4") .col-2
         h3 .row.row-end
-        .row.demo.row-end.sm-margin.color-11
-          .col-4 .col-4
-          .col-2 .col-2
+        .row.row-end(class="demo color-0")
+          .col-4(class="color-5") .col-4
+          .col-2(class="color-4") .col-2
         h3 .row.row-center
-        .row.demo.row-center.sm-margin.color-11
-          .col-4 .col-4
-          .col-2 .col-2
+        .row.row-center(class="demo color-0")
+          .col-4(class="color-5") .col-4
+          .col-2(class="color-4") .col-2
         h3 .row.row-sb
-        .row.demo.row-sb.sm-margin.color-11
-          .col-4 .col-4
-          .col-2 .col-2
+        .row.row-sb(class="demo color-0")
+          .col-4(class="color-5") .col-4
+          .col-2(class="color-4") .col-2
         h3 .row.row-sa
-        .row.demo.row-sa.sm-margin.color-11
-          .col-4 .col-4
-          .col-2 .col-2
+        .row.row-sa(class="demo color-0")
+          .col-4(class="color-5") .col-4
+          .col-2(class="color-4") .col-2
 
         h2 Vertical align
         .row
           .col-12.col-md-6.sm-padding
             h3 .row.row-va-stretch (default)
-            .row.row-center.demo.row-va-stretch.sm-margin.color-11.v-aligns
-              .col-8 .col-8
-              .col-8 .col-8
+            .row.row-center.row-va-stretch(class="demo v-aligns color-0")
+              .col-8(class="color-1") .col-8
+              .col-8(class="color-2") .col-8
           .col-12.col-md-6.sm-padding
             h3 .row.row-va-top
-            .row.row-center.demo.row-va-top.sm-margin.color-11.v-aligns
-              .col-8 .col-8
-              .col-8 .col-8
+            .row.row-center.row-va-top(class="demo v-aligns color-0")
+              .col-8(class="color-1") .col-8
+              .col-8(class="color-2") .col-8
           .col-12.col-md-6.sm-padding
             h3 .row.row-va-bottom
-            .row.row-center.demo.row-va-bottom.sm-margin.color-11.v-aligns
-              .col-8 .col-8
-              .col-8 .col-8
+            .row.row-center.row-va-bottom(class="demo v-aligns color-0")
+              .col-8(class="color-1") .col-8
+              .col-8(class="color-2") .col-8
           .col-12.col-md-6.sm-padding
             h3 .row.row-va-center
-            .row.row-center.demo.row-va-center.sm-margin.color-11.v-aligns
-              .col-8 .col-8
-              .col-8 .col-8
+            .row.row-center.row-va-center(class="demo v-aligns color-0")
+              .col-8(class="color-1") .col-8
+              .col-8(class="color-2") .col-8
           .col-12.col-md-6.sm-padding
             h3 .row.row-va-sb
-            .row.row-center.demo.row-va-sb.sm-margin.color-11.v-aligns
-              .col-8 .col-8
-              .col-8 .col-8
+            .row.row-center.row-va-sb(class="demo v-aligns color-0")
+              .col-8(class="color-1") .col-8
+              .col-8(class="color-2") .col-8
           .col-12.col-md-6.sm-padding
             h3 .row.row-va-sa
-            .row.row-center.demo.row-va-sa.sm-margin.color-11.v-aligns
-              .col-8 .col-8
-              .col-8 .col-8
+            .row.row-center.row-va-sa(class="demo v-aligns color-0")
+              .col-8(class="color-1") .col-8
+              .col-8(class="color-2") .col-8
 
         h2 Vertical stretch
         .row
           .col-12.col-md-6.sm-padding
             h3 .row.row-s-stretch (default)
-            .row.row-center.demo.row-s-stretch.sm-margin.color-11.v-aligns
-              .col-2.color-1(style="min-height: 40px") height 40px
-              .col-2.color-8(style="min-height: 140px") height 140px
-              .col-2.color-6(style="min-height: 85px") height 85px
-              .col-2.color-7(style="min-height: 70px") height 70px
+            .row.row-center.row-s-stretch(class="demo v-aligns color-0")
+              .col-2(style="min-height: 40px" class="color-0") height 40px
+              .col-2(style="min-height: 140px" class="color-1") height 140px
+              .col-2(style="min-height: 85px" class="color-2") height 85px
+              .col-2(style="min-height: 70px" class="color-3") height 70px
           .col-12.col-md-6.sm-padding
             h3 .row.row-s-top
-            .row.row-center.demo.row-s-top.sm-margin.color-11.v-aligns
-              .col-2.color-1(style="min-height: 40px") height 40px
-              .col-2.color-8(style="min-height: 140px") height 140px
-              .col-2.color-6(style="min-height: 85px") height 85px
-              .col-2.color-7(style="min-height: 70px") height 70px
+            .row.row-center.row-s-top(class="demo v-aligns color-0")
+              .col-2(style="min-height: 40px" class="color-0") height 40px
+              .col-2(style="min-height: 140px" class="color-1") height 140px
+              .col-2(style="min-height: 85px" class="color-2") height 85px
+              .col-2(style="min-height: 70px" class="color-3") height 70px
         .row
           .col-12.col-md-6.sm-padding
             h3 .row.row-s-bottom
-            .row.row-center.demo.row-s-bottom.sm-margin.color-11.v-aligns
-              .col-2.color-1(style="min-height: 40px") height 40px
-              .col-2.color-8(style="min-height: 140px") height 140px
-              .col-2.color-6(style="min-height: 85px") height 85px
-              .col-2.color-7(style="min-height: 70px") height 70px
+            .row.row-center.row-s-bottom(class="demo v-aligns color-0")
+              .col-2(style="min-height: 40px" class="color-0") height 40px
+              .col-2(style="min-height: 140px" class="color-1") height 140px
+              .col-2(style="min-height: 85px" class="color-2") height 85px
+              .col-2(style="min-height: 70px" class="color-3") height 70px
           .col-12.col-md-6.sm-padding
             h3 .row.row-s-center
-            .row.row-center.demo.row-s-center.sm-margin.color-11.v-aligns
-              .col-2.color-1(style="min-height: 40px") height 40px
-              .col-2.color-8(style="min-height: 140px") height 140px
-              .col-2.color-6(style="min-height: 85px") height 85px
-              .col-2.color-7(style="min-height: 70px") height 70px
+            .row.row-center.row-s-center(class="demo v-aligns color-0")
+              .col-2(style="min-height: 40px" class="color-0") height 40px
+              .col-2(style="min-height: 140px" class="color-1") height 140px
+              .col-2(style="min-height: 85px" class="color-2") height 85px
+              .col-2(style="min-height: 70px" class="color-3") height 70px
 
         h2 Elements direction
         .row
           .col-12.col-md-6.sm-padding
             h3 .row.row-normal (default)
-            .row.demo.color-11.row-normal.sm-margin
-              .col-3.color-3 I'm 1st
-              .col-3.color-4 I'm 2nd
-              .col-3.color-5 I'm 3th
+            .row.row-normal(class="demo color-0")
+              .col-3(class="color-5") I'm 1st
+              .col-3(class="color-4") I'm 2nd
+              .col-3(class="color-1") I'm 3th
           .col-12.col-md-6.sm-padding
             h3 .row.row-reverse
-            .row.demo.color-11.row-reverse.sm-margin
-              .col-3.color-3 I'm 1st
-              .col-3.color-4 I'm 2nd
-              .col-3.color-5 I'm 3th
+            .row.row-reverse(class="demo color-0")
+              .col-3(class="color-5") I'm 1st
+              .col-3(class="color-4") I'm 2nd
+              .col-3(class="color-1") I'm 3th
         .row
           .col-12.col-md-6.sm-padding
             h3 .row.row-vertical
-            .row.demo.row-vertical.sm-margin
-              .col-12.color-3 I'm 1st
-              .col-12.color-4 I'm 2nd
-              .col-12.color-5 I'm 3th
+            .row.row-vertical(class="demo")
+              .col-12(class="color-5") I'm 1st
+              .col-12(class="color-4") I'm 2nd
+              .col-12(class="color-1") I'm 3th
           .col-12.col-md-6.sm-padding
             h3 .row.row-vertical-reverse
-            .row.demo.row-vertical-reverse.sm-margin
-              .col-12.color-3 I'm 1st
-              .col-12.color-4 I'm 2nd
-              .col-12.color-5 I'm 3th
+            .row.row-vertical-reverse(class="demo")
+              .col-12(class="color-5") I'm 1st
+              .col-12(class="color-4") I'm 2nd
+              .col-12(class="color-1") I'm 3th
 
         h2 Self ordering
         p By default supports order from -6 to 6
-        .row.demo.sm-margin
-          .col-3.color-3.col-order-1 I'm 1st but .col-order-1
-          .col-3.color-4.col-order-2 I'm 2nd but .col-order-2
-          .col-3.color-5.col-order-0 I'm 3th but .col-order-0
-          .col-3.color-6.col-order-n1 I'm 4th but .col-order-n1 (negative 1)
+        .row(class="demo")
+          .col-3.col-order-1(class="color-0") I'm 1st but .col-order-1
+          .col-3.col-order-2(class="color-3") I'm 2nd but .col-order-2
+          .col-3.col-order-0(class="color-4") I'm 3th but .col-order-0
+          .col-3.col-order-n1(class="color-6") I'm 4th but .col-order-n1 (negative 1)
 
         h2 Self align
-        .row.row-center.demo.sm-margin.color-11.v-aligns
-          .col-2.col-bottom.color-1(style="min-height: 40px")
+        .row.row-center(class="demo v-aligns color-0")
+          .col-2.col-bottom(style="min-height: 40px" class="color-0")
             | .col-bottom
             br
             | height 40px
-          .col-2.color-8(style="min-height: 140px")
+          .col-2(style="min-height: 140px")
             | height 140px
-          .col-2.col-center.color-6(style="min-height: 85px")
+          .col-2.col-center(style="min-height: 85px" class="color-1")
             | .col-center
             br
             | height 85px
-          .col-2.col-top.color-7(style="min-height: 70px")
+          .col-2.col-top(style="min-height: 70px" class="color-2")
             | .col-top
             br
             | height 70px
-          .col-2.col-stretch.color-3(style="min-height: 50px")
+          .col-2.col-stretch(style="min-height: 50px" class="color-3")
             | .col-stretch
             br
             | height 50px
 
         h2 Basic responsive
-        .row.demo.sm-margin
-          .col-lg-6 .col-lg-6
-          .col-lg-6 .col-lg-6
-        .row.demo.sm-margin
-          .col-md-4.color-9 .col-md-4
-          .col-md-8.color-9 .col-md-8
-        .row.demo.sm-margin
-          .col-8.col-md-3.color-4 .col-7.col-md-3
-          .col-4.col-md-9.color-4 .col-5.col-md-9
-        .row.demo.sm-margin
-          .col-4.col-md-8.col-lg-6.color-2 .col-4.col-md-8.col-lg-6
-          .col-8.col-md-4.col-lg-6.color-2 .col-8.col-md-4.col-lg-6
-        .row.demo.sm-margin
-          .col-grow-1.col-lg-2.color-8 .col-grow-1.col-lg-2
-          .col-grow-1.col-lg-7.color-9 .col-grow-1.col-lg-7
-          .col-grow-1.col-lg-3.color-5 .col-grow-1.col-lg-3
-        .row.demo.sm-margin
-          .col-9.col-md-grow-1.color-7 .col-9.col-md-grow-1
-          .col-3.col-md-grow-6.color-10 .col-3.col-md-grow-6
+        .row(class="demo")
+          .col-lg-6(class="color-1") .col-lg-6
+          .col-lg-6(class="color-1") .col-lg-6
+        .row(class="demo")
+          .col-md-4(class="color-3") .col-md-4
+          .col-md-8(class="color-3") .col-md-8
+        .row(class="demo")
+          .col-8.col-md-3(class="color-4") .col-7.col-md-3
+          .col-4.col-md-9(class="color-4") .col-5.col-md-9
+        .row(class="demo")
+          .col-4.col-md-8.col-lg-6(class="color-1") .col-4.col-md-8.col-lg-6
+          .col-8.col-md-4.col-lg-6(class="color-1") .col-8.col-md-4.col-lg-6
+        .row(class="demo")
+          .col-grow-1.col-lg-2(class="color-6") .col-grow-1.col-lg-2
+          .col-grow-1.col-lg-7(class="color-6") .col-grow-1.col-lg-7
+          .col-grow-1.col-lg-3(class="color-6") .col-grow-1.col-lg-3
+        .row(class="demo")
+          .col-9.col-md-grow-1(class="color-5") .col-9.col-md-grow-1
+          .col-3.col-md-grow-6(class="color-5") .col-3.col-md-grow-6
 
         h2 Offsets
-        .row.demo.sm-margin.color-11
-          .col-3.col-md-offset-1 .col-3.col-md-offset-1
-          .col-3.col-lg-offset-5 .col-3.col-lg-offset-5
+        .row(class="demo color-0")
+          .col-3.col-md-offset-1(class="color-1") .col-3.col-md-offset-1
+          .col-3.col-lg-offset-5(class="color-2") .col-3.col-lg-offset-5
 
         h2 Responsive rows modifiers
         p You can use all modifier classes of rows and cols with responsive modifiers by add 'md' or 'lg' prefixes
         h3 .row.row-md-center.row-lg-end
-        .row.demo.row-md-center.row-lg-end.sm-margin.color-8
-          .col-8 I'm on the right only on big screens, centered on middle size screens and on the left on small one
+        .row.row-md-center.row-lg-end(class="demo color-0")
+          .col-8(class="color-5") I'm on the right only on big screens, centered on middle size screens and on the left on small one
 
         h3 .row.row-va-bottom.row-md-va-center.row-lg-va-top
-        .row.row-va-bottom.row-md-va-center.row-lg-va-top.demo.sm-margin.row-center.color-9.v-aligns
-          .col-8 We on the top on big screens, centered on
-          .col-8 middle and on the bottom on small
+        .row.row-va-bottom.row-md-va-center.row-lg-va-top.row-center(class="demo v-aligns color-0")
+          .col-8(class="color-1") We on the top on big screens, centered on
+          .col-8(class="color-0") middle and on the bottom on small
 
         h3 .row.row-s-center.row-md-s-top.row-lg-s-stretch
-        .row.row-center.demo.row-s-center.row-md-s-top.row-lg-s-stretch.sm-margin.color-11.v-aligns
-          .col-3.color-1(style="min-height: 40px") We stretch on big screens,
-          .col-3.color-8(style="min-height: 140px") stick on top on middle screens
-          .col-3.color-6(style="min-height: 85px")  and centered
-          .col-3.color-7(style="min-height: 70px") on small
+        .row.row-center.row-s-center.row-md-s-bottom.row-lg-s-stretch(class="demo v-aligns color-0")
+          .col-3(style="min-height: 40px" class="color-0") We stretch on big screens,
+          .col-3(style="min-height: 140px" class="color-1") stick on bottom on middle screens
+          .col-3(style="min-height: 85px" class="color-2")  and centered
+          .col-3(style="min-height: 70px" class="color-3") on small
 
         h3 .row.row-md-vertical-reverse.row-lg-reverse
-        .row.row-center.demo.row-md-vertical-reverse.row-lg-vertical.color-11.sm-margin
-          .col-12.color-3 We vertical on big & small screens
-          .col-12.color-5 and reverse vertical on middle one
+        .row.row-center.demo.row-md-vertical-reverse.row-lg-vertical
+          .col-12(class="color-4") We vertical on big & small screens
+          .col-12(class="color-6") and reverse vertical on middle one
 
         h3 Responsive self ordering
-        .row.row-center.demo.color-11.sm-margin
-          .col-3.color-3.col-order-2.col-md-order-3.col-lg-order-1
+        .row.row-center(class="demo color-0")
+          .col-3.col-order-2.col-md-order-3.col-lg-order-1(class="color-1")
             | .col-order-2.
             br
             | .col-md-order-3
             br
             | .col-lg-order-1
-          .col-3.color-7.col-order-3.col-md-order-1.col-lg-order-2
+          .col-3.col-order-3.col-md-order-1.col-lg-order-2(class="color-6")
             | .col-order-3
             br
             | .col-md-order-1
             br
             | .col-lg-order-2
-          .col-3.color-4.col-order-1.col-md-order-2.col-lg-order-3
+          .col-3.col-order-1.col-md-order-2.col-lg-order-3(class="color-5")
             | .col-order-1
             br
             | .col-md-order-2
@@ -297,15 +299,15 @@ html
             | .col-lg-order-3
 
         h3 Responsive self align
-        .row.row-center.demo.v-aligns.color-11.sm-margin
-          .col-3.color-3.col-bottom.col-md-center.col-lg-top
+        .row.row-center(class="demo v-aligns color-0")
+          .col-3.col-bottom.col-md-center.col-lg-top(class="color-3")
             | .col-bottom
             br
             | .col-md-center
             br
             | .col-lg-top
-          .col-3.col-md-bottom.color-7 .col-md-bottom
-          .col-3.color-4.col-top.col-md-stretch.col-lg-bottom
+          .col-3.col-md-bottom .col-md-bottom
+          .col-3.col-top.col-md-stretch.col-lg-bottom(class="color-2")
             | .col-top
             br
             | .col-md-stretch
@@ -313,16 +315,16 @@ html
             | .col-lg-bottom
 
         h3 Responsive helpers
-        .row.demo.sm-margin
-          .col-12.sm-hidden.md-hidden.color-6
+        .row(class="demo")
+          .col-12.sm-hidden.md-hidden(class="color-0")
             | I'm visible only on large screens
             br
             | .sm-hidden.md-hidden
-          .col-12.sm-hidden.lg-hidden.color-9
+          .col-12.sm-hidden.lg-hidden(class="color-6")
             | I'm visible only on middle screens
             br
             | .sm-hidden.lg-hidden
-          .col-12.md-hidden.lg-hidden.color-4
+          .col-12.md-hidden.lg-hidden(class="color-3")
             | I'm visible only on small screens
             br
             | .md-hidden.lg-hidden
