@@ -21,7 +21,15 @@ module.exports = function (grunt) {
             compile: {
                 files: [
                     {expand: true, cwd: 'src/', src: '*.styl', dest: 'dist', ext: '.css'},
-                    {expand: true, cwd: 'pages/styles', src: '*.styl', dest: 'dist', ext: '.css'}
+                    {expand: true, cwd: 'pages/styles', src: '*.styl', dest: 'docs', ext: '.css'}
+                ]
+            }
+        },
+
+        copy: {
+            docs: {
+                files: [
+                    {expand: true, cwd: 'dist/', src: '**/*.*', dest: 'docs'}
                 ]
             }
         },
@@ -38,9 +46,9 @@ module.exports = function (grunt) {
             options: {
                 pretty: true
             },
-            pages: {
+            docs: {
                 files: [
-                    {expand: true, cwd: 'pages/', src: '**/*.jade', dest: 'dist', ext: '.html'}
+                    {expand: true, cwd: 'pages/', src: '**/*.jade', dest: 'docs', ext: '.html'}
                 ]
             }
         },
@@ -61,7 +69,7 @@ module.exports = function (grunt) {
                 options: {
                     port: 9001,
                     keepalive: true,
-                    base: 'dist'
+                    base: 'docs'
                 }
             }
         },
@@ -78,7 +86,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
     require('jit-grunt')(grunt);
 
-    grunt.registerTask('html', ['jade:pages']);
+    grunt.registerTask('html', ['jade:docs', 'copy:docs']);
 
     grunt.registerTask('styles',
         config.isDev ? ['stylus:compile'] : ['stylus:compile', 'cssmin:dist']
