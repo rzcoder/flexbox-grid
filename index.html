@@ -77,7 +77,7 @@
           <div class="col">.col</div>
           <div class="col">.col</div>
         </div>
-        <div class="row demo">
+        <div class="row row-nowrap demo">
           <div style="flex-basis: 200px" class="col-fixed color-5">.col-fixed with flex-basis 200px</div>
           <div class="col-grow color-4">.col-grow-1 or .col-grow or just .col</div>
         </div>
@@ -244,6 +244,25 @@
             </div>
           </div>
         </div>
+        <h2>Rows wrap</h2>
+        <h3>.row.row-wrap (default)</h3>
+        <div class="row row-wrap demo color-0">
+          <div class="col-6 color-0">I'm 1st (.col-6)</div>
+          <div class="col-6 color-2">I'm 2nd (.col-6)</div>
+          <div class="col-6 color-1">I'm 3th (.col-6)</div>
+        </div>
+        <h3>.row.row-nowrap</h3>
+        <div class="row row-nowrap demo color-0">
+          <div class="col-6 color-0">I'm 1st (.col-6)</div>
+          <div class="col-6 color-2">I'm 2nd (.col-6)</div>
+          <div class="col-6 color-1">I'm 3th (.col-6)</div>
+        </div>
+        <h3>.row.row-wrap-reverse</h3>
+        <div class="row row-wrap-reverse demo color-0">
+          <div class="col-6 color-0">I'm 1st (.col-6)</div>
+          <div class="col-6 color-2">I'm 2nd (.col-6)</div>
+          <div class="col-6 color-1">I'm 3th (.col-6)</div>
+        </div>
         <h2>Self ordering</h2>
         <p>By default supports order from -6 to 6</p>
         <div class="row demo">
@@ -313,6 +332,12 @@
         <div class="row row-center demo row-md-vertical-reverse row-lg-vertical">
           <div class="col-12 color-4">We vertical on big & small screens</div>
           <div class="col-12 color-6">and reverse vertical on middle one</div>
+        </div>
+        <h3>.row.row-wrap.row-md-nowrap</h3>
+        <div class="row row row-wrap row-md-nowrap demo color-0">
+          <div class="col-6 color-0">I'm 1st (.col-6)</div>
+          <div class="col-6 color-2">I'm 2nd (.col-6)</div>
+          <div class="col-6 color-1">I'm 3th (.col-6)</div>
         </div>
         <h3>Responsive self ordering</h3>
         <div class="row row-center demo color-0">
