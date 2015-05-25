@@ -32,6 +32,13 @@ h4 {
   background: #eceff1;
   border: 2px solid #a7b5be;
 }
+.row.demo.layout-example > div {
+  background: none;
+  border: 0;
+}
+.row.demo.layout-example .row.demo {
+  margin-top: 0;
+}
 .row.demo > div {
   background: #90caf9;
   text-align: center;
@@ -65,8 +72,8 @@ h4 {
   border: 2px solid #ffb446;
 }
 .row.demo > div.color-6 {
-  background: #ffcdd2;
-  border: 2px solid #ff5a6b;
+  background: #b2dfdb;
+  border: 2px solid #6bc2ba;
 }
 .row.demo.v-aligns {
   height: 165px;
