@@ -21,7 +21,7 @@ h1, h2, h3, h4
 
 
 $row-colors = #eceff1
-$col-colors = #ffab91 #bbdefb #f0f4c3 #b39ddb #b2ebf2 #ffe0b2 #ffcdd2
+$col-colors = #ffab91 #bbdefb #f0f4c3 #b39ddb #b2ebf2 #ffe0b2 #b2dfdb
 
 .row.demo
   margin-top 5px
@@ -30,6 +30,13 @@ $col-colors = #ffab91 #bbdefb #f0f4c3 #b39ddb #b2ebf2 #ffe0b2 #ffcdd2
     &.color-{$index}
       background $color
       border 2px solid darken($color, 25%)
+
+  &.layout-example
+    > div
+      background none
+      border 0
+    .row.demo
+      margin-top 0
 
   > div
     background #90caf9
@@ -50,3 +57,4 @@ $col-colors = #ffab91 #bbdefb #f0f4c3 #b39ddb #b2ebf2 #ffe0b2 #ffcdd2
 
 .sm-padding
   padding 5px
+
