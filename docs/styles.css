@@ -25,21 +25,25 @@ h4 {
   margin: 25px 0;
   font-size: 40px;
 }
-.row.demo {
+.demo {
+  padding-top: 24px;
+  position: relative;
+}
+.demo > .col > .row {
   margin-top: 5px;
 }
-.row.demo.color-0 {
+.demo .row.color-0 {
   background: #eceff1;
   border: 2px solid #a7b5be;
 }
-.row.demo.layout-example > div {
+.demo .row.layout-example > div {
   background: none;
   border: 0;
 }
-.row.demo.layout-example .row.demo {
+.demo .row.layout-example .row.demo {
   margin-top: 0;
 }
-.row.demo > div {
+.demo .row > div {
   background: #90caf9;
   text-align: center;
   box-sizing: border-box;
@@ -47,36 +51,74 @@ h4 {
   min-height: 40px;
   line-height: 40px;
 }
-.row.demo > div.color-0 {
+.demo .row > div.color-0 {
   background: #ffab91;
   border: 2px solid #ff5f2d;
 }
-.row.demo > div.color-1 {
+.demo .row > div.color-1 {
   background: #bbdefb;
   border: 2px solid #54acf5;
 }
-.row.demo > div.color-2 {
+.demo .row > div.color-2 {
   background: #f0f4c3;
   border: 2px solid #d9e366;
 }
-.row.demo > div.color-3 {
+.demo .row > div.color-3 {
   background: #b39ddb;
   border: 2px solid #7e58c2;
 }
-.row.demo > div.color-4 {
+.demo .row > div.color-4 {
   background: #b2ebf2;
   border: 2px solid #58d4e3;
 }
-.row.demo > div.color-5 {
+.demo .row > div.color-5 {
   background: #ffe0b2;
   border: 2px solid #ffb446;
 }
-.row.demo > div.color-6 {
+.demo .row > div.color-6 {
   background: #b2dfdb;
   border: 2px solid #6bc2ba;
 }
-.row.demo.v-aligns {
+.demo .row.v-aligns {
   height: 165px;
+}
+.demo .code-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.demo .code-popup .show-code {
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  margin-right: -17px;
+  padding: 5px 16px 5px 16px;
+  transition: color 0.2s, background 0.2s;
+}
+.demo .code-popup .show-code:hover {
+  color: #ff7043;
+}
+.demo .code-popup > pre {
+  display: block;
+  opacity: 0;
+  margin: 29px -17px 0 -15px;
+  padding: 7px 0 7px 60px;
+  background: #f0f0f0;
+  transition: opacity 0.2s;
+  z-index: -1;
+}
+.demo .code-popup.shown {
+  z-index: 1;
+}
+.demo .code-popup.shown > pre {
+  opacity: 1;
+  z-index: 1;
+  box-shadow: -4px 5px 9px -2px #828082;
+}
+.demo .code-popup.shown .show-code {
+  background: #f0f0f0;
+  color: #ff7043;
 }
 .sm-padding {
   padding: 5px;

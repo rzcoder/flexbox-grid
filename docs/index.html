@@ -16,7 +16,7 @@
       function saveOffset() {
         $('h1, h2, h3, h4').each(function (index, el) {
           var $el = $(el);
-          topOffset = $el.position().top - $window.scrollTop();
+          topOffset = $el.position.top - $window.scrollTop;
           if (topOffset >= 0) {
             topEl = $el;
             return false;
@@ -31,7 +31,7 @@
       $window.on('resize', function () {
         var offset = topOffset;
         if (topEl) {
-          offset = topEl.position().top - topOffset;
+          offset = topEl.position.top - topOffset;
         }
     
         $window.scrollTop(offset);
@@ -41,8 +41,28 @@
       saveOffset();
     }
     
-    $(function(){
+    $(function () {
       init();
+    
+      $('.row.demo').each(function (i, el) {
+        var $el = $(el);
+        var html = $el.find('.col').html();
+        var indent = Math.max(html.indexOf('<') - 1, 0);
+        html = html.slice(1).replace(new RegExp('\\s{'+ indent +'}<', 'g'), '<').replace(/\s*$/g, '').replace(/color\-\d+/g, '').replace(/("\s|\s")/g, '"');
+        var code = $('<div class="col-12 code-popup"><a class="show-code">[Show code]</a><pre><code class="html">' + html + '</code></pre></div>');
+        code.prependTo($el);
+      });
+    
+      $('body').on('click', '.code-popup > .show-code', function (e) {
+        var $el = $(e.target).closest('.code-popup');
+        if ($el.is('.shown')) {
+          $el.removeClass('shown');
+        } else {
+          $('.code-popup').removeClass('shown');
+          $el.addClass('shown');
+        }
+      });
+    
       $('pre code').each(function (i, block) {
         $(block).text($(block).html());
         hljs.highlightBlock(block);
@@ -58,136 +78,169 @@
         <h2>Percentage cols</h2>
         <p>By default you have 12 different sizing columns</p>
         <div class="row demo">
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-          <div class="col-1">.col-1</div>
-        </div>
-        <div class="row demo">
-          <div class="col-6 color-4">.col-6</div>
-          <div class="col-6 color-4">.col-6</div>
-        </div>
-        <div class="row demo">
-          <div class="col-12 color-5">.col-12</div>
+          <div class="col">
+            <div class="row">
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+              <div class="col-1">.col-1</div>
+            </div>
+            <div class="row">
+              <div class="col-6 color-4">.col-6</div>
+              <div class="col-6 color-4">.col-6</div>
+            </div>
+            <div class="row">
+              <div class="col-12 color-5">.col-12</div>
+            </div>
+          </div>
         </div>
         <h2>Fixed and grow cols</h2>
         <p>By default you have 12 sizes for .col-grow (1 to 12)</p>
         <div class="row demo">
-          <div class="col">.col</div>
-          <div class="col">.col</div>
-          <div class="col">.col</div>
-        </div>
-        <div class="row row-nowrap demo">
-          <div style="flex-basis: 200px" class="col-fixed color-5">.col-fixed with flex-basis 200px</div>
-          <div class="col-grow color-4">.col-grow-1 or .col-grow or just .col</div>
-        </div>
-        <div class="row demo">
-          <div class="col-12 col-md-3 color-2">.col-12.col-md-3</div>
-          <div class="col-grow-3 color-3">.col-grow-3</div>
-          <div class="col-grow-6 color-5">.col-grow-6</div>
+          <div class="col">
+            <div class="row">
+              <div class="col">.col</div>
+              <div class="col">.col</div>
+              <div class="col">.col</div>
+            </div>
+            <div class="row row-nowrap">
+              <div style="flex-basis: 200px" class="col-fixed color-5">.col-fixed with flex-basis 200px</div>
+              <div class="col-grow color-4">.col-grow-1 or .col-grow or just .col</div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-3 color-2">.col-12.col-md-3</div>
+              <div class="col-grow-3 color-3">.col-grow-3</div>
+              <div class="col-grow-6 color-5">.col-grow-6</div>
+            </div>
+          </div>
         </div>
         <h2>Offsets</h2>
-        <div class="row demo color-0">
-          <div class="col-3 col-offset-3 color-1">.col-3.col-offset-3</div>
-          <div class="col-3 col-offset-1 color-2">.col-3.col-offset-1</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row color-0">
+              <div class="col-3 col-offset-3 color-1">.col-3.col-offset-3</div>
+              <div class="col-3 col-offset-1 color-2">.col-3.col-offset-1</div>
+            </div>
+            <div class="row color-0">
+              <div class="col-3 col-offset-4 color-1">.col-3.col-offset-4</div>
+              <div class="col-3 col-offset-n7 color-2">.col-3.col-offset-n7 (negative 7)</div>
+            </div>
+          </div>
         </div>
-        <div class="row demo color-0">
-          <div class="col-3 col-offset-4 color-1">.col-3.col-offset-4</div>
-          <div class="col-3 col-offset-n7 color-2">.col-3.col-offset-n7 (negative 7)</div>
-        </div>
-        <h2>Horizontal align</h2>
+        <h2>Horizontal align        </h2>
         <h3>.row.row-start (default)</h3>
-        <div class="row row-start demo color-0">
-          <div class="col-4 color-5">.col-4</div>
-          <div class="col-2 color-4">.col-2</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-start color-0">
+              <div class="col-4 color-5">.col-4</div>
+              <div class="col-2 color-4">.col-2</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-end</h3>
-        <div class="row row-end demo color-0">
-          <div class="col-4 color-5">.col-4</div>
-          <div class="col-2 color-4">.col-2</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-end color-0">
+              <div class="col-4 color-5">.col-4</div>
+              <div class="col-2 color-4">.col-2</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-center</h3>
-        <div class="row row-center demo color-0">
-          <div class="col-4 color-5">.col-4</div>
-          <div class="col-2 color-4">.col-2</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center color-0">
+              <div class="col-4 color-5">.col-4</div>
+              <div class="col-2 color-4">.col-2</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-sb</h3>
-        <div class="row row-sb demo color-0">
-          <div class="col-4 color-5">.col-4</div>
-          <div class="col-2 color-4">.col-2</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-sb color-0">
+              <div class="col-4 color-5">.col-4</div>
+              <div class="col-2 color-4">.col-2</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-sa</h3>
-        <div class="row row-sa demo color-0">
-          <div class="col-4 color-5">.col-4</div>
-          <div class="col-2 color-4">.col-2</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-sa color-0">
+              <div class="col-4 color-5">.col-4</div>
+              <div class="col-2 color-4">.col-2</div>
+            </div>
+          </div>
         </div>
         <h2>Vertical align</h2>
-        <div class="row">
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-va-stretch (default)</h3>
-            <div class="row row-center row-va-stretch demo v-aligns color-0">
+        <h3>.row.row-va-stretch (default)</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-va-stretch v-aligns color-0">
               <div class="col-8 color-1">.col-8</div>
               <div class="col-8 color-2">.col-8</div>
             </div>
           </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-va-top</h3>
-            <div class="row row-center row-va-top demo v-aligns color-0">
+        </div>
+        <h3>.row.row-va-top</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-va-top v-aligns color-0">
               <div class="col-8 color-1">.col-8</div>
               <div class="col-8 color-2">.col-8</div>
             </div>
           </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-va-bottom</h3>
-            <div class="row row-center row-va-bottom demo v-aligns color-0">
+        </div>
+        <h3>.row.row-va-bottom</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-va-bottom v-aligns color-0">
               <div class="col-8 color-1">.col-8</div>
               <div class="col-8 color-2">.col-8</div>
             </div>
           </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-va-center</h3>
-            <div class="row row-center row-va-center demo v-aligns color-0">
+        </div>
+        <h3>.row.row-va-center</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-va-center v-aligns color-0">
               <div class="col-8 color-1">.col-8</div>
               <div class="col-8 color-2">.col-8</div>
             </div>
           </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-va-sb</h3>
-            <div class="row row-center row-va-sb demo v-aligns color-0">
+        </div>
+        <h3>.row.row-va-sb</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-va-sb v-aligns color-0">
               <div class="col-8 color-1">.col-8</div>
               <div class="col-8 color-2">.col-8</div>
             </div>
           </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-va-sa</h3>
-            <div class="row row-center row-va-sa demo v-aligns color-0">
+        </div>
+        <h3>.row.row-va-sa</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-va-sa v-aligns color-0">
               <div class="col-8 color-1">.col-8</div>
               <div class="col-8 color-2">.col-8</div>
             </div>
           </div>
         </div>
         <h2>Vertical stretch</h2>
-        <div class="row">
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-s-stretch (default)</h3>
-            <div class="row row-center row-s-stretch demo v-aligns color-0">
-              <div style="min-height: 40px" class="col-2 color-0">height 40px</div>
-              <div style="min-height: 140px" class="col-2 color-1">height 140px</div>
-              <div style="min-height: 85px" class="col-2 color-2">height 85px</div>
-              <div style="min-height: 70px" class="col-2 color-3">height 70px</div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-s-top</h3>
-            <div class="row row-center row-s-top demo v-aligns color-0">
+        <h3>.row.row-s-stretch (default)</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-s-stretch v-aligns color-0">
               <div style="min-height: 40px" class="col-2 color-0">height 40px</div>
               <div style="min-height: 140px" class="col-2 color-1">height 140px</div>
               <div style="min-height: 85px" class="col-2 color-2">height 85px</div>
@@ -195,19 +248,32 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-s-bottom</h3>
-            <div class="row row-center row-s-bottom demo v-aligns color-0">
+        <h3>.row.row-s-top</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-s-top v-aligns color-0">
               <div style="min-height: 40px" class="col-2 color-0">height 40px</div>
               <div style="min-height: 140px" class="col-2 color-1">height 140px</div>
               <div style="min-height: 85px" class="col-2 color-2">height 85px</div>
               <div style="min-height: 70px" class="col-2 color-3">height 70px</div>
             </div>
           </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-s-center</h3>
-            <div class="row row-center row-s-center demo v-aligns color-0">
+        </div>
+        <h3>.row.row-s-bottom</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-s-bottom v-aligns color-0">
+              <div style="min-height: 40px" class="col-2 color-0">height 40px</div>
+              <div style="min-height: 140px" class="col-2 color-1">height 140px</div>
+              <div style="min-height: 85px" class="col-2 color-2">height 85px</div>
+              <div style="min-height: 70px" class="col-2 color-3">height 70px</div>
+            </div>
+          </div>
+        </div>
+        <h3>.row.row-s-center</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-s-center v-aligns color-0">
               <div style="min-height: 40px" class="col-2 color-0">height 40px</div>
               <div style="min-height: 140px" class="col-2 color-1">height 140px</div>
               <div style="min-height: 85px" class="col-2 color-2">height 85px</div>
@@ -216,36 +282,40 @@
           </div>
         </div>
         <h2>Elements direction</h2>
-        <div class="row">
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-normal (default)</h3>
-            <div class="row row-normal demo color-0">
-              <div class="col-3 color-5">I'm 1st</div>
-              <div class="col-3 color-4">I'm 2nd</div>
-              <div class="col-3 color-1">I'm 3th</div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-reverse</h3>
-            <div class="row row-reverse demo color-0">
+        <h3>.row.row-normal (default)</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-normal color-0">
               <div class="col-3 color-5">I'm 1st</div>
               <div class="col-3 color-4">I'm 2nd</div>
               <div class="col-3 color-1">I'm 3th</div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-vertical</h3>
-            <div class="row row-vertical demo">
+        <h3>.row.row-reverse</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-reverse color-0">
+              <div class="col-3 color-5">I'm 1st</div>
+              <div class="col-3 color-4">I'm 2nd</div>
+              <div class="col-3 color-1">I'm 3th</div>
+            </div>
+          </div>
+        </div>
+        <h3>.row.row-vertical</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-vertical">
               <div class="col-12 color-5">I'm 1st</div>
               <div class="col-12 color-4">I'm 2nd</div>
               <div class="col-12 color-1">I'm 3th</div>
             </div>
           </div>
-          <div class="col-12 col-md-6 sm-padding">
-            <h3>.row.row-vertical-reverse</h3>
-            <div class="row row-vertical-reverse demo">
+        </div>
+        <h3>.row.row-vertical-reverse</h3>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-vertical-reverse">
               <div class="col-12 color-5">I'm 1st</div>
               <div class="col-12 color-4">I'm 2nd</div>
               <div class="col-12 color-1">I'm 3th</div>
@@ -254,141 +324,196 @@
         </div>
         <h2>Rows wrap</h2>
         <h3>.row.row-wrap (default)</h3>
-        <div class="row row-wrap demo color-0">
-          <div class="col-6 color-0">I'm 1st (.col-6)</div>
-          <div class="col-6 color-2">I'm 2nd (.col-6)</div>
-          <div class="col-6 color-1">I'm 3th (.col-6)</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-wrap color-0">
+              <div class="col-6 color-0">I'm 1st (.col-6)</div>
+              <div class="col-6 color-2">I'm 2nd (.col-6)</div>
+              <div class="col-6 color-1">I'm 3th (.col-6)</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-nowrap</h3>
-        <div class="row row-nowrap demo color-0">
-          <div class="col-6 color-0">I'm 1st (.col-6)</div>
-          <div class="col-6 color-2">I'm 2nd (.col-6)</div>
-          <div class="col-6 color-1">I'm 3th (.col-6)</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-nowrap color-0">
+              <div class="col-6 color-0">I'm 1st (.col-6)</div>
+              <div class="col-6 color-2">I'm 2nd (.col-6)</div>
+              <div class="col-6 color-1">I'm 3th (.col-6)</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-wrap-reverse</h3>
-        <div class="row row-wrap-reverse demo color-0">
-          <div class="col-6 color-0">I'm 1st (.col-6)</div>
-          <div class="col-6 color-2">I'm 2nd (.col-6)</div>
-          <div class="col-6 color-1">I'm 3th (.col-6)</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-wrap-reverse color-0">
+              <div class="col-6 color-0">I'm 1st (.col-6)</div>
+              <div class="col-6 color-2">I'm 2nd (.col-6)</div>
+              <div class="col-6 color-1">I'm 3th (.col-6)</div>
+            </div>
+          </div>
         </div>
         <h2>Self ordering</h2>
         <p>By default supports order from -6 to 6</p>
         <div class="row demo">
-          <div class="col-3 col-order-1 color-0">I'm 1st but .col-order-1</div>
-          <div class="col-3 col-order-2 color-3">I'm 2nd but .col-order-2</div>
-          <div class="col-3 col-order-0 color-4">I'm 3th but .col-order-0</div>
-          <div class="col-3 col-order-n1 color-6">I'm 4th but .col-order-n1 (negative 1)</div>
+          <div class="col">
+            <div class="row">
+              <div class="col-3 col-order-1 color-0">I'm 1st but .col-order-1</div>
+              <div class="col-3 col-order-2 color-3">I'm 2nd but .col-order-2</div>
+              <div class="col-3 col-order-0 color-4">I'm 3th but .col-order-0</div>
+              <div class="col-3 col-order-n1 color-6">I'm 4th but .col-order-n1 (negative 1)</div>
+            </div>
+          </div>
         </div>
         <h2>Self align</h2>
-        <div class="row row-center demo v-aligns color-0">
-          <div style="min-height: 40px" class="col-2 col-bottom color-0">.col-bottom<br>height 40px</div>
-          <div style="min-height: 140px" class="col-2">height 140px</div>
-          <div style="min-height: 85px" class="col-2 col-center color-1">.col-center<br>height 85px</div>
-          <div style="min-height: 70px" class="col-2 col-top color-2">.col-top<br>height 70px</div>
-          <div style="min-height: 50px" class="col-2 col-stretch color-3">.col-stretch<br>height 50px</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center v-aligns color-0">
+              <div style="min-height: 40px" class="col-2 col-bottom color-0">.col-bottom<br>height 40px</div>
+              <div style="min-height: 140px" class="col-2">height 140px</div>
+              <div style="min-height: 85px" class="col-2 col-center color-1">.col-center<br>height 85px</div>
+              <div style="min-height: 70px" class="col-2 col-top color-2">.col-top<br>height 70px</div>
+              <div style="min-height: 50px" class="col-2 col-stretch color-3">.col-stretch<br>height 50px</div>
+            </div>
+          </div>
         </div>
         <h2>Basic responsive</h2>
         <div class="row demo">
-          <div class="col-lg-6 color-1">.col-lg-6</div>
-          <div class="col-lg-6 color-1">.col-lg-6</div>
-        </div>
-        <div class="row demo">
-          <div class="col-md-4 color-3">.col-md-4</div>
-          <div class="col-md-8 color-3">.col-md-8</div>
-        </div>
-        <div class="row demo">
-          <div class="col-8 col-md-3 color-4">.col-7.col-md-3</div>
-          <div class="col-4 col-md-9 color-4">.col-5.col-md-9</div>
-        </div>
-        <div class="row demo">
-          <div class="col-4 col-md-8 col-lg-6 color-1">.col-4.col-md-8.col-lg-6</div>
-          <div class="col-8 col-md-4 col-lg-6 color-1">.col-8.col-md-4.col-lg-6</div>
-        </div>
-        <div class="row demo">
-          <div class="col-grow-1 col-lg-2 color-6">.col-grow-1.col-lg-2</div>
-          <div class="col-grow-1 col-lg-7 color-6">.col-grow-1.col-lg-7</div>
-          <div class="col-grow-1 col-lg-3 color-6">.col-grow-1.col-lg-3</div>
-        </div>
-        <div class="row demo">
-          <div class="col-9 col-md-grow-1 color-5">.col-9.col-md-grow-1</div>
-          <div class="col-3 col-md-grow-6 color-5">.col-3.col-md-grow-6</div>
+          <div class="col">
+            <div class="row">
+              <div class="col-lg-6 color-1">.col-lg-6</div>
+              <div class="col-lg-6 color-1">.col-lg-6</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 color-3">.col-md-4</div>
+              <div class="col-md-8 color-3">.col-md-8</div>
+            </div>
+            <div class="row">
+              <div class="col-8 col-md-3 color-4">.col-7.col-md-3</div>
+              <div class="col-4 col-md-9 color-4">.col-5.col-md-9</div>
+            </div>
+            <div class="row">
+              <div class="col-4 col-md-8 col-lg-6 color-1">.col-4.col-md-8.col-lg-6</div>
+              <div class="col-8 col-md-4 col-lg-6 color-1">.col-8.col-md-4.col-lg-6</div>
+            </div>
+            <div class="row">
+              <div class="col-grow-1 col-lg-2 color-6">.col-grow-1.col-lg-2</div>
+              <div class="col-grow-1 col-lg-7 color-6">.col-grow-1.col-lg-7</div>
+              <div class="col-grow-1 col-lg-3 color-6">.col-grow-1.col-lg-3</div>
+            </div>
+            <div class="row">
+              <div class="col-9 col-md-grow-1 color-5">.col-9.col-md-grow-1</div>
+              <div class="col-3 col-md-grow-6 color-5">.col-3.col-md-grow-6</div>
+            </div>
+          </div>
         </div>
         <h2>Offsets</h2>
-        <div class="row demo color-0">
-          <div class="col-3 col-md-offset-1 color-1">.col-3.col-md-offset-1</div>
-          <div class="col-3 col-lg-offset-5 color-2">.col-3.col-lg-offset-5</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row color-0">
+              <div class="col-3 col-md-offset-1 color-1">.col-3.col-md-offset-1</div>
+              <div class="col-3 col-lg-offset-5 color-2">.col-3.col-lg-offset-5</div>
+            </div>
+          </div>
         </div>
         <h2>Responsive rows modifiers</h2>
         <p>You can use all modifier classes of rows and cols with responsive modifiers by add 'md' or 'lg' prefixes</p>
         <h3>.row.row-md-center.row-lg-end</h3>
-        <div class="row row-md-center row-lg-end demo color-0">
-          <div class="col-8 color-5">I'm on the right only on big screens, centered on middle size screens and on the left on small one</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-md-center row-lg-end color-0">
+              <div class="col-8 color-5">
+                I'm on the right only on big screens,
+                centered on middle size screens and on the left on small one
+              </div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-va-bottom.row-md-va-center.row-lg-va-top</h3>
-        <div class="row row-va-bottom row-md-va-center row-lg-va-top row-center demo v-aligns color-0">
-          <div class="col-8 color-1">We on the top on big screens, centered on</div>
-          <div class="col-8 color-0">middle and on the bottom on small</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-va-bottom row-md-va-center row-lg-va-top row-center v-aligns color-0">
+              <div class="col-8 color-1">We on the top on big screens, centered on</div>
+              <div class="col-8 color-0">middle and on the bottom on small</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-s-center.row-md-s-top.row-lg-s-stretch</h3>
-        <div class="row row-center row-s-center row-md-s-bottom row-lg-s-stretch demo v-aligns color-0">
-          <div style="min-height: 40px" class="col-3 color-0">We stretch on big screens,</div>
-          <div style="min-height: 140px" class="col-3 color-1">stick on bottom on middle screens</div>
-          <div style="min-height: 85px" class="col-3 color-2"> and centered</div>
-          <div style="min-height: 70px" class="col-3 color-3">on small</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-s-center row-md-s-bottom row-lg-s-stretch v-aligns color-0">
+              <div style="min-height: 40px" class="col-3 color-0">We stretch on big screens,</div>
+              <div style="min-height: 140px" class="col-3 color-1">stick on bottom on middle screens</div>
+              <div style="min-height: 85px" class="col-3 color-2"> and centered</div>
+              <div style="min-height: 70px" class="col-3 color-3">on small</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-md-vertical-reverse.row-lg-vertical</h3>
-        <div class="row row-center demo row-md-vertical-reverse row-lg-vertical">
-          <div class="col-12 color-4">We vertical on big & small screens</div>
-          <div class="col-12 color-6">and reverse vertical on middle one</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center row-md-vertical-reverse row-lg-vertical">
+              <div class="col-12 color-4">We vertical on big & small screens</div>
+              <div class="col-12 color-6">and reverse vertical on middle one</div>
+            </div>
+          </div>
         </div>
         <h3>.row.row-wrap.row-md-nowrap</h3>
-        <div class="row row row-wrap row-md-nowrap demo color-0">
-          <div class="col-6 color-0">I'm 1st (.col-6)</div>
-          <div class="col-6 color-2">I'm 2nd (.col-6)</div>
-          <div class="col-6 color-1">I'm 3th (.col-6)</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-wrap row-md-nowrap color-0">
+              <div class="col-6 color-0">I'm 1st (.col-6)</div>
+              <div class="col-6 color-2">I'm 2nd (.col-6)</div>
+              <div class="col-6 color-1">I'm 3th (.col-6)</div>
+            </div>
+          </div>
         </div>
         <h3>Responsive self ordering</h3>
-        <div class="row row-center demo color-0">
-          <div class="col-3 col-order-2 col-md-order-3 col-lg-order-1 color-1">.col-order-2.<br>.col-md-order-3<br>.col-lg-order-1</div>
-          <div class="col-3 col-order-3 col-md-order-1 col-lg-order-2 color-6">.col-order-3<br>.col-md-order-1<br>.col-lg-order-2</div>
-          <div class="col-3 col-order-1 col-md-order-2 col-lg-order-3 color-5">.col-order-1<br>.col-md-order-2<br>.col-lg-order-3</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center color-0">
+              <div class="col-3 col-order-2 col-md-order-3 col-lg-order-1 color-1">.col-order-2.<br>.col-md-order-3<br>.col-lg-order-1</div>
+              <div class="col-3 col-order-3 col-md-order-1 col-lg-order-2 color-6">.col-order-3<br>.col-md-order-1<br>.col-lg-order-2</div>
+              <div class="col-3 col-order-1 col-md-order-2 col-lg-order-3 color-5">.col-order-1<br>.col-md-order-2<br>.col-lg-order-3</div>
+            </div>
+          </div>
         </div>
         <h3>Responsive self align</h3>
-        <div class="row row-center demo v-aligns color-0">
-          <div class="col-3 col-bottom col-md-center col-lg-top color-3">.col-bottom<br>.col-md-center<br>.col-lg-top</div>
-          <div class="col-3 col-md-bottom">.col-md-bottom</div>
-          <div class="col-3 col-top col-md-stretch col-lg-bottom color-2">.col-top<br>.col-md-stretch<br>.col-lg-bottom</div>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-center v-aligns color-0">
+              <div class="col-3 col-bottom col-md-center col-lg-top color-3">.col-bottom<br>.col-md-center<br>.col-lg-top</div>
+              <div class="col-3 col-md-bottom">.col-md-bottom</div>
+              <div class="col-3 col-top col-md-stretch col-lg-bottom color-2">.col-top<br>.col-md-stretch<br>.col-lg-bottom</div>
+            </div>
+          </div>
         </div>
         <h3>Responsive helpers</h3>
         <div class="row demo">
-          <div class="col-12 sm-hidden md-hidden color-0">I'm visible only on large screens<br>.sm-hidden.md-hidden</div>
-          <div class="col-12 sm-hidden lg-hidden color-6">I'm visible only on middle screens<br>.sm-hidden.lg-hidden</div>
-          <div class="col-12 md-hidden lg-hidden color-3">I'm visible only on small screens<br>.md-hidden.lg-hidden</div>
-        </div>
-        <h2>3 Column layout example</h2>
-        <div class="row row-vertical layout-example demo">
-          <div class="col color-5">Header</div>
           <div class="col">
-            <div class="row demo">
-              <div class="col-12 col-md-3 color-6">Navigation</div>
-              <div style="min-height: 140px" class="col-12 col-grow-1 color-2">Article</div>
-              <div class="col-md-12 col-lg-3 color-1">Sidebar</div>
+            <div class="row">
+              <div class="col-12 sm-hidden md-hidden color-0">I'm visible only on large screens<br>.sm-hidden.md-hidden</div>
+              <div class="col-12 sm-hidden lg-hidden color-6">I'm visible only on middle screens<br>.sm-hidden.lg-hidden</div>
+              <div class="col-12 md-hidden lg-hidden color-3">I'm visible only on small screens<br>.md-hidden.lg-hidden</div>
             </div>
           </div>
-          <div class="col color-3">Footer</div>
         </div>
-        <pre><code class="html">
-            <div class="row row-vertical">
-              <div class="col">Header</div>
+        <h2>3 Column layout example</h2>
+        <div class="row demo">
+          <div class="col">
+            <div class="row row-vertical layout-example">
+              <div class="col color-5">Header</div>
               <div class="col">
                 <div class="row">
-                  <div class="col-12 col-md-3">Navigation</div>
-                  <div style="min-height: 140px" class="col-12 col-grow-1">Article</div>
-                  <div class="col-md-12 col-lg-3">Sidebar</div>
+                  <div class="col-12 col-md-3 color-6">Navigation</div>
+                  <div style="min-height: 140px" class="col-12 col-grow-1 color-2">Article</div>
+                  <div class="col-md-12 col-lg-3 color-1">Sidebar</div>
                 </div>
               </div>
-              <div class="col">Footer</div>
-            </div></code></pre>
+              <div class="col color-3">Footer</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
