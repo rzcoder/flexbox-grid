@@ -1,6 +1,6 @@
 {
   "name": "flex-grid",
-  "version": "0.2.02",
+  "version": "0.2.03",
   "description": "Css grid layout based on flexbox",
   "main": "dist/flexbox-grid.min.css",
   "scripts": {
