@@ -121,6 +121,9 @@ h4 {
   background: #f0f0f0;
   color: #ff7043;
 }
+.demo.col3-example > .col > .row .col {
+  padding: 0;
+}
 .sm-padding {
   padding: 5px;
 }
