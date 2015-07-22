@@ -127,6 +127,13 @@ col_modifiers($media_ns)
   .{$ns}col-{$media_ns}padded
     padding 0 $col_padding_defined
 
+  .{$ns}col-{$media_ns}padded-between
+    padding 0 $col_padding_defined
+    &:first-child
+      padding-left 0
+    &:last-child
+      padding-right 0
+
 col_grow($media_ns)
   .{$ns}col-{$media_ns}grow
   .{$ns}col-{$media_ns}
