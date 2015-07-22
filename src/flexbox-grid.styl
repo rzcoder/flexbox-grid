@@ -16,6 +16,7 @@ $row_padding ?= 0
 $col_margin ?= 0
 $col_padding ?= 0
 
+$col_padding_defined ?= 1rem
 
 row_modifiers($media_ns)
   /* Wraps */
@@ -122,6 +123,9 @@ col_modifiers($media_ns)
 
   .{$ns}col-{$media_ns}stretch
     align-self stretch
+
+  .{$ns}col-{$media_ns}padded
+    padding 0 $col_padding_defined
 
 col_grow($media_ns)
   .{$ns}col-{$media_ns}grow
