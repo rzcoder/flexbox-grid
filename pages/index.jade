@@ -17,7 +17,7 @@ head
       function saveOffset() {
         $('h1, h2, h3, h4').each(function (index, el) {
           var $el = $(el);
-          topOffset = $el.position.top - $window.scrollTop();
+          topOffset = $el.position().top - $window.scrollTop();
           if (topOffset >= 0) {
             topEl = $el;
             return false;
@@ -32,7 +32,7 @@ head
       $window.on('resize', function () {
         var offset = topOffset;
         if (topEl) {
-          offset = topEl.position.top - topOffset;
+          offset = topEl.position().top - topOffset;
         }
 
         $window.scrollTop(offset);
